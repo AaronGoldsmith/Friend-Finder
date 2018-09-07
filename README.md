@@ -1,2 +1,2 @@
 # Friend-Finder
-Answer several questions to get paired up with a likely match. 
+Answer several questions to see who Friend-Fiender picks as your match! 
