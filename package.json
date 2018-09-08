@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Answer several questions to see who Friend-Fiender picks as your match!",
   "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/AaronGoldsmith/Friend-Finder/issues"
   },
-  "homepage": "https://github.com/AaronGoldsmith/Friend-Finder#readme",
-  "dependencies": {
-    "jquery": "^3.3.1"
-  }
+  "homepage": "https://github.com/AaronGoldsmith/Friend-Finder#readme"
 }
