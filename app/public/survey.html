@@ -11,37 +11,49 @@
          <body>
             <h2>Welcome to the Survey</h2>
             Name:
-            <input type="text" id="userName"></input><br>
+            <input type="text" id="userName"><br>
             Age:
-            <input type="text" id="userAge"></input><br>
+            <input type="text" id="userAge"><<br>
             Gender:
-            <input type="text" id="userGender"></input>
+            <input type="text" id="userGender">
 
-
-            <input type="submit" class="btn btn-primary submit"></input>
+            <input type="submit"  href="/api/routes" class="btn btn-primary submit">
+            <footer class="footer">
+                  <div class="container">
+                    <p>
+                      <a href="/api/friends">API Friends Link</a> |
+                      <a href="/">Home</a>
+                  </div>
+            </footer>
          </body>
-      
+
          <script>
          $(".submit").on("click", function(event) {
             event.preventDefault();
       
             // Here we grab the form elements
-            var newUser = {
-                  name: $("userName").val().trim(),
-                  age: $("userAge").val().trim(),
-                  gender: $("userGender").val().trim()  
-             };
-      
-            $.post("/api/friends", newUser,
-               function(data) {
-                  if(data){alert('added');}
-                 res.writeHead(200, { "Content-Type": "text/html" })
-               })
+             $.post("/api/friends", {
+                  'name': $('#userName').val().trim(),
+                  'age': $("#userAge").val().trim(),
+                  'gender': $("#userGender").val().trim(),
+                  'image': "",
+                  'data': Array(10),
+             },function(data) {
+               if (data) {
+                  console.log($('#userName').val().trim());
+                  alert("Yay! You have officially been added!");
+               }
+               else{
+                  alert("something went wrong")
+               }
+            
+               $("#userName").val("");
+               $("#userAge").val("")
+               $("#userGender").val("");
+            
             });
-            $("userName").val() = "";
-            $("userAge").val() = "";
-            $("userGender").val() = ""
-                  
+         });
          </script>
+
 </html>
    

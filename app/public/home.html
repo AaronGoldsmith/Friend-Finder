@@ -9,28 +9,27 @@
 <body>
    <h2>Welcome Home</h2>
    <div id="friendList"></div>
+   <a href="/survey">Survey</a> 
+   <br>
+   <a href="/api/friends">Friends api</a>
 </body>
 <script>
-
-
-    function getFriends() {
-    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
     $.ajax({ url: "/api/friends", method: "GET" })
       .then(function(friendData) {
-
-        // Here we then log the tableData to console, where it will show up as an object.
-        console.log(friendData.name);
+        for(i in friendData){
+          console.log(friendData[i])
+        }
+        // console.log(friendData);
         console.log("------------------------------------");
 
         // Loop through and display each of the customers
-        for (var i = 0; i < tableData.length; i++) {
+        for (var i = 0; i < friendData.length; i++) {
 
           // Get a reference to the tableList element and populate it with tables
           var friendList = $("#friendList");
 
           // Then display the fields in the HTML (Section Name, Date, URL)
           var listItem = $("<li class='list-group-item mt-4'>");
-
           listItem.append(
             $("<h2>").text("Friend #" + (i + 1)),
             $("<hr>"),
@@ -42,7 +41,6 @@
           friendList.append(listItem);
         }
       });
-   }
-   getFriends();
+ 
 </script>
 </html>
