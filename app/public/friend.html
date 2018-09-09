@@ -1,0 +1,75 @@
+<html>
+<head>
+   <!-- latest bootstrap & jquery -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <style>*{box-sizing:border-box}</style>
+
+    </head>
+<body class="bg-light">
+      <h2 class="bg-dark text-light w-100 mb-5 p-3">All friends</h2>
+
+      <div class="px-3 container friendContainer">
+         <div id="friendList" class="row mx-auto"></div>
+      </div>
+      
+      <hr>
+      <div class="container text-center my-2">
+         <a href="/survey">Survey</a>
+         &nbsp;|&nbsp;
+         <a href="/">Home</a>
+       </div>   
+</body>
+<script>
+    $.ajax({ url: "/api/friends", method: "GET" })
+      .then(function(friendData) {
+        for(i in friendData){
+          console.log(friendData[i])
+        }
+        var friendList = $("#friendList");
+
+        // Loop through and display each of the friends
+        for (var i = 0; i < friendData.length; i++) {
+         //   check for appending new row
+         if(i%4==0&&i>0){
+             friendList = $("<div class='row mx-auto my-3'>");
+             $(".friendContainer").append(friendList);
+          }
+
+          var listItem  = $("<div class='list-group-item card-body mb-5 my-5 mx-auto px-3'>");
+          var usrImg    = $("<img class='mx-auto d-block rounded'>")
+                           .attr("src",friendData[i].image)
+                           .css("height","200px","width","250px","overflow","hidden")
+
+            var usernamer = friendData[i].name;
+            if(usernamer.length>15){
+              usernamer = usernamer.split(" ")[0];
+            }
+          listItem.append(
+            $("<h2 class='text-center text-white p-3 w-auto'>").text("Friend #" + (i + 1)),
+            $("<hr>"),
+            $("<h3>").text("This is " + usernamer).css("font-size","1.2em"),
+            $("<h3>").text("Age: " + friendData[i].age).css("font-size","1em"),
+          );
+          if(friendData[i].gender.toLowerCase()[0]=='m'){
+            listItem.attr("class","col-md-6 rounded p-3 border card-body")
+            listItem.css("background","rgba(0,100,200,0.5)","overflow-wrap","break-word")
+          }
+          else{
+            listItem.attr("class","col-md-6 rounded p-3 border card-body");
+            listItem.css("background","rgba(100,10,20,0.5)","overflow-wrap","break-word")
+          }
+          var listContainer = $("<div class='outter mx-auto border-secondary rounded col-lg-9 row my-3'>")
+          listContainer.css("overflow","hidden")
+          listContainer.append(usrImg);
+          listContainer.append(listItem);
+         
+          friendList.append(listContainer);
+          friendList.append($("<br>"));
+        }
+      });
+ 
+</script>
+</html>
