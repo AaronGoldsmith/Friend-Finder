@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+           <title>Survey</title>
+            <!-- link bootstrap  & jquery-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+         </head>
+         <body>
+            <h2>Welcome to the Survey</h2>
+            Name:
+            <input type="text" id="userName"></input><br>
+            Age:
+            <input type="text" id="userAge"></input><br>
+            Gender:
+            <input type="text" id="userGender"></input>
+
+
+            <input type="submit" class="btn btn-primary submit"></input>
+         </body>
+      
+         <script>
+         $(".submit").on("click", function(event) {
+            event.preventDefault();
+      
+            // Here we grab the form elements
+            var newUser = {
+                  name: $("userName").val().trim(),
+                  age: $("userAge").val().trim(),
+                  gender: $("userGender").val().trim()  
+             };
+      
+            $.post("/api/friends", newUser,
+               function(data) {
+                  if(data){alert('added');}
+                 res.writeHead(200, { "Content-Type": "text/html" })
+               })
+            });
+            $("userName").val() = "";
+            $("userAge").val() = "";
+            $("userGender").val() = ""
+                  
+         </script>
+</html>
+   

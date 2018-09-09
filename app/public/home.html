@@ -1,0 +1,48 @@
+<html>
+<head>
+   <!-- latest bootstrap & jquery -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+<body>
+   <h2>Welcome Home</h2>
+   <div id="friendList"></div>
+</body>
+<script>
+
+
+    function getFriends() {
+    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+    $.ajax({ url: "/api/friends", method: "GET" })
+      .then(function(friendData) {
+
+        // Here we then log the tableData to console, where it will show up as an object.
+        console.log(friendData.name);
+        console.log("------------------------------------");
+
+        // Loop through and display each of the customers
+        for (var i = 0; i < tableData.length; i++) {
+
+          // Get a reference to the tableList element and populate it with tables
+          var friendList = $("#friendList");
+
+          // Then display the fields in the HTML (Section Name, Date, URL)
+          var listItem = $("<li class='list-group-item mt-4'>");
+
+          listItem.append(
+            $("<h2>").text("Friend #" + (i + 1)),
+            $("<hr>"),
+            $("<h2>").text("Name: " + friendData[i].name),
+            $("<h2>").text("Gender: " + friendData[i].gender),
+            $("<h2>").text("Age: " + friendData[i].age)
+          );
+
+          friendList.append(listItem);
+        }
+      });
+   }
+   getFriends();
+</script>
+</html>
