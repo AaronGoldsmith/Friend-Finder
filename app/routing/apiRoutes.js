@@ -5,7 +5,6 @@
        res.json(friendsData);
     });
    app.post("/api/friends", function(req, res) {
-
       friendsData.push(req.body)
       res.json(true);
    });

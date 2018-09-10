@@ -12,7 +12,7 @@
       <h2 class="bg-dark text-light w-100 mb-5 p-3">All friends</h2>
 
       <div class="px-3 container friendContainer">
-         <div id="friendList" class="row mx-auto"></div>
+         <div id="friendList" class="mx-auto row"></div>
       </div>
       
       <hr>
@@ -34,7 +34,7 @@
         for (var i = 0; i < friendData.length; i++) {
          //   check for appending new row
          if(i%4==0&&i>0){
-             friendList = $("<div class='row mx-auto my-3'>");
+             friendList = $("<div class='mx-auto my-3'>");
              $(".friendContainer").append(friendList);
           }
 
@@ -42,28 +42,29 @@
           var usrImg    = $("<img class='mx-auto d-block rounded'>")
                            .attr("src",friendData[i].image)
                            .css("height","200px","width","250px","overflow","hidden")
-
+            
+               // hack long names
             var usernamer = friendData[i].name;
             if(usernamer.length>15){
               usernamer = usernamer.split(" ")[0];
             }
           listItem.append(
-            $("<h2 class='text-center text-white p-3 w-auto'>").text("Friend #" + (i + 1)),
+            $("<h2 class='text-center text-white px-3 w-auto'>").text("Friend #" + (i + 1)),
             $("<hr>"),
             $("<h3>").text("This is " + usernamer).css("font-size","1.2em"),
             $("<h3>").text("Age: " + friendData[i].age).css("font-size","1em"),
           );
           if(friendData[i].gender.toLowerCase()[0]=='m'){
-            listItem.attr("class","col-md-6 rounded p-3 border card-body")
+            listItem.attr("class","col-md-4 rounded p-3 border mx-auto card-body")
             listItem.css("background","rgba(0,100,200,0.5)","overflow-wrap","break-word")
           }
           else{
-            listItem.attr("class","col-md-6 rounded p-3 border card-body");
+            listItem.attr("class","col-md-4 rounded p-3 border mx-auto card-body");
             listItem.css("background","rgba(100,10,20,0.5)","overflow-wrap","break-word")
           }
-          var listContainer = $("<div class='outter mx-auto border-secondary rounded col-lg-9 row my-3'>")
+          var listContainer = $("<div class='outter border-secondary rounded row w-100 my-3'>")
           listContainer.css("overflow","hidden")
-          listContainer.append(usrImg);
+          listItem.prepend(usrImg);
           listContainer.append(listItem);
          
           friendList.append(listContainer);
