@@ -185,6 +185,26 @@
             </div>
          </div>
       </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="matchContainer" tabindex="-1" role="dialog" aria-labelledby="matchContainer"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                              <h5 class="modal-title" id="match-title">We found a match!</h5> 
+                        </div>
+                        <div class="modal-body">
+                            <h4>PERSON NAME</h4>  
+                            <img src="https://placehold.it/200x200"
+                        </div>
+                        <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Message them now!</button>
+                        </div>
+                  </div>
+            </div>
+      </div>
       <div class="container">
             <footer class="footer mt-5">
                   <p class="border border-secondary rounded text-center d-block bg-white">
@@ -196,7 +216,30 @@
 
 </body>
 <script>
-      
+function getClosest(recentUser,cb){
+     $.ajax({ url: "/api/friends", method: "POST" })
+      .then(function (friendsData) {
+        var minDiff = 100; // arbitrary big number
+        var minInd = 0;
+        for (var i = 0; i < friendsData.length; i++)
+        {
+          var sum = 0;
+          var friend = friendsData[i];
+          if(friend.name!==recentUser.name){
+            for (var j = 0; j < 10; j++)
+            {
+              sum += Math.abs(friend.data[j] - recentUser.data[j])
+            }
+            if (sum < minDiff)
+            {
+              minDiff = sum;
+              minInd = i; // index of friend
+            }
+          }
+        }
+        cb(friendsData[i].name);
+      })
+  }
   $(function () {
         // helper function to dry up code
         function updateFields(responses){
@@ -206,7 +249,7 @@
               var selected = responses[i]
                 if (parseInt(selected.value) > 0)
                   {   
-                        userData.push(selected.value)
+                     userData.push(selected.value)
                   }
                   else
                   {
@@ -227,36 +270,39 @@
             var userData = [];
             var responses = $(".custom-select option:selected");
             userData = updateFields(responses);
-
+            var recentUser = {
+                  name: $('#userName').val().trim(),
+                  age: $("#userAge").val().trim(),
+                  gender: $("#userGender").val().trim(),
+                  image: $("#userImage").val().trim(),
+                  data: userData,
+            }
             // don't get past this point without the 'required' fields
             if(userData.indexOf(0) > 0 || $('#userName').val().length<1){
                   return;
             }
             else{
 
-                   $.post("/api/friends", {
-                        'name': $('#userName').val().trim(),
-                        'age': $("#userAge").val().trim(),
-                        'gender': $("#userGender").val().trim(),
-                        'image': $("#userImage").val().trim(),
-                        'data': userData,
-                  }, function (data) {
-                        if (!data)
-                        {
-                              alert("something went wrong")
-                        }
+                  $.post("/api/friends", recentUser,
+                  function (data) {
+                  if (!data)
+                  {
+                     alert("something went wrong")
+                  }
+                  var match = getClosest(recentUser,function(resp){
+                        $('#matchContainer').modal()
+                        $('#matchContainer').modal()
+                        console.log(resp)
+                  });
+                  $("#userName").val("");
+                  $("#userAge").val("")
+                  $("#userGender").val("");
+                  $("#userImage").val("");
                         
-                        $("#userName").val("");
-                        $("#userAge").val("")
-                        $("#userGender").val("");
-                        $("#userImage").val("");
-                       
                   });
                   
             }
-
-           
-            
+ 
         });
    });
 </script>
