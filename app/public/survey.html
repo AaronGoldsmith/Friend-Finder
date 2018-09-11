@@ -1,167 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-           <title>Survey</title>
-            <!-- link bootstrap  & jquery-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            <script src="https://code.jquery.com/jquery.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-            <style>*{box-sizing:border-box}</style>
 
-         </head>
-         <body class="bg-light">
-            <div class="container my-4">
-                  <div class="row">
-                        <div class="bg-white border border-secondary col-md-5 rounded mt-5 mx-auto p-3" style="min-width:400px">
-                              <form class="mx-auto">
-                                    <div class="row text-center">
-                                          <div class="mx-2 py-1 text-left col-md-3">Name </div>
-                                          <input class="p-1 text-left btn btn-white border-secondary mb-2" type="text" id="userName">
-                                    </div>
-                                    <div class= "row">
-                                          <div class="mx-2 py-1 text-left col-md-3">Age</div>
-                                          <input class="p-1 text-left btn btn-white border-secondary mb-1" type="text" id="userAge">
-                                    </div>
-                                    <div class="row">
-                                          <div class="mx-2 py-1 text-left col-md-3">Gender</div>
-                                          <input class="p-1 text-left btn btn-white border-secondary mb-2 " type="text" id="userGender">
-                                    </div>
-                                    <div class="row">
-                                          <div class="col-md-3 mx-2">
-                                                <div class="row ml-1">Link a photo</div>
-                                                <div class="row mx-4"><small class="row"><em>(optional)</em></small></div>
-                                                </div>
-                                                <input class="mb-2 p-1 text-left btn btn-white border-secondary m-0" type="url" id="userImage"><br>
-                                          </div>
-                                    <div class="row">
-                                          <input type="submit" href="/survey" class="btn btn-primary submit col-md-5 align-self-center mt-4 mx-auto">
-                                    </div>
-                              </form>
+<head>
+      <title>Friend Finder Survey</title>
+      <!-- link bootstrap  & jquery-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <style>
+            .bg-light{
+                  background:url('https://www.toptal.com/designers/subtlepatterns/patterns/vertical-waves.png') repeat
+            }
+      *{box-sizing:border-box}</style>
+
+</head>
+
+<body class="bg-light">
+   <h3 class="bg-dark text-light px-5 py-3">Friend Finder - Registration </h3>
+   <div class="container my-4">
+          <div class="bg-white border border-secondary col-md-5 rounded mt-5 mx-auto p-4" style="min-width:400px">
+               <h3>Basic Information</h3>
+               <h6>Some essentials first</h6> 
+               <form class="mx-auto p-4">
+                     <div class="row text-center">
+                        <div class="mx-4 py-1 col-md-4 text-left">Name </div>
+                        <input class=" p-1 text-left btn btn-white border-secondary col-md-6 mb-2" type="text" id="userName">
+                     </div>
+                        <div class="row text-center">
+                              <div class="mx-4 py-1 col-md-4 text-left">Age</div>
+                              <input class="p-1 text-left btn btn-white border-secondary col-md-6 mb-2" type="text" id="userAge">
                         </div>
+                        <div class="row text-center">
+                              <div class="mx-4 py-1 col-md-4 text-left">Gender</div>
+                              <input class="p-1 text-left btn btn-white border-secondary col-md-6 mb-2 " type="text" id="userGender">
+                        </div>
+                        <div class="row text-center">
+                              <div class="mx-4 col-md-4 py-1 text-left">Link a photo 
+                              </div>
+                              <input class="mb-2 p-1 text-left btn btn-white col-md-6 border-secondary m-0" type="url" id="userImage">
+                               <!-- <small><em><a href="https://facebook.com/me">(Facebook)</a></em></small> -->
+                        </div>
+                        </form>
                   </div>
-                   <!-- START SURVEY SECTION -->
-                   <div id="sur_sec" class="bg-white border border-secondary col-md-5 mx-auto my-5 rounded p-3">
-                              <h3>10 Questions til harmony</h3>
-                              <select id="q1" class="custom-select">
-                                    <option selected>Do you enjoy watching sports?</option>
-                                    <option value="1">Yes</option>
-                                    <option value="2">No</option>
-                                    <option value="3">Never seen it</option>
-                                    <option value="4">Despise it</option>
-                              </select>
-                              <select id="q2" class="custom-select">
-                                    <option selected>How much do you enjoy scary movies?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q3" class="custom-select">
-                                 <option selected>Select an option 1 to 5?</option>
-                                 <option value="1">1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                                 <option value="5">5</option>
-                              </select>
-                              <select id="q4" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q5" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q6" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q7" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+            <!-- START SURVEY SECTION -->
+            <div id="sur_sec" class="bg-white border form-group col-md-10 border-secondary p-4 mx-auto my-5 rounded p-3">
+                  <h3>Let's get to know you</h3>
+                  <hr>
 
-                              </select>
-                              <select id="q8" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q9" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-                              <select id="q10" class="custom-select">
-                                    <option selected>Select an option 1 to 5?</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                              </select>
-              </div>
+                  <div class=" mb-5 mx-auto">
+                    <h5 class='pt-2'>1. Do you enjoy watching sports?</h5>
+                    <small><em>1 = Not at all, 5 = All the time</em></small>
+                    <select id="q1" class="col-lg-3 mx-3 custom-select ">
+                        <option selected>Select an option</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>2. Do you enjoy scary movies?</h5>
+                  <small><em>1 = Not at all, 5 = Love them</em></small>
+                  <select id="q2" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>3. Importance of text response time?</h5>
+                  <small><em>1 = Don't care, 5 = Very important</em></small>
+                  <select id="q3" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>4. Cats or Dogs</h5>
+                  <small><em>1 = Dogs only, 5 = Cats only</em></small>
+                    <select id="q4" class="col-lg-3 mx-3 custom-select">
+                        <option selected>- Select an option -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>5. Do you care how other people see you?</h5>
+                  <small><em>1 = Not at all, 5 = Too much</em></small>
+                  <select id="q5" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>6. Cats or Dogs</h5>
+                  <small><em>1 = Dogs only, 5 = Cats only</em></small>
+                  <select id="q6" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+                  <div class="mb-5 mx-auto">
+                    <h5>7. Cats or Dogs</h5>
+                    <small><em>1 = Dogs only, 5 = Cats only</em></small>
+
+                    <select id="q7" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>8. Cats or Dogs</h5>
+                  <small><em>1 = Dogs only, 5 = Cats only</em></small>
+                  <select id="q8" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>9. Cats or Dogs</h5>
+                  <small><em>1 = Dogs only, 5 = Cats only</em></small>
+
+                  <select id="q9" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+
+                  <div class="mb-5 mx-auto">
+                  <h5>10. Cats or Dogs</h5>
+                   <small><em>1 = Dogs only, 5 = Cats only</em></small>
+
+                  <select id="q10" class="col-lg-3 mx-3 custom-select">
+                        <option selected>Select an option?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+                  </div>
+                  <div class="row">
+                        <div class="btn btn-primary submit col-md-5 align-self-center mt-4 mx-auto">Find your match</div>
+                  </div>
             </div>
-            <div class="container">
-                  <footer class="footer mt-5">
-                        <p class="border border-secondary rounded text-center d-block bg-white">
-                              <a class="btn" href="/">Home</a> |
-                              <a class="btn" href="/friends">Friends</a> |
-                              <a class="btn" href="/api/friends">API Friends Link</a> 
-                        </p>
-                  </footer>
-             </div>
- 
-         </body>
-         <script>
-         $(".submit").on("click", function(event) {
+         </div>
+      </div>
+      <div class="container">
+            <footer class="footer mt-5">
+                  <p class="border border-secondary rounded text-center d-block bg-white">
+                        <a class="btn" href="/friends">Friends</a> |
+                        <a class="btn" "" href="/api/friends">API Friends Link</a>
+                  </p>
+            </footer>
+      </div>
+
+</body>
+<script>
+      
+  $(function () {
+        // helper function to dry up code
+        function updateFields(responses){
+              var userData = [];
+            for (var i = 0; i < responses.length; i++)
+              {
+              var selected = responses[i]
+                if (parseInt(selected.value) > 0)
+                  {   
+                        userData.push(selected.value)
+                  }
+                  else
+                  {
+                    userData.push(0);
+                    var badval = $("#q" + (i + 1));
+                    badval.addClass("border-danger")
+                    badval.on("change", function (event) {
+                        $(this).removeClass("border-danger");
+                    })
+                  }
+              }
+              return userData;
+        }
+
+      //   Button click handler
+      $(".submit").on("click", function (event) {
             event.preventDefault();
+            var userData = [];
+            var responses = $(".custom-select option:selected");
+            userData = updateFields(responses);
+
+            // don't get past this point without the 'required' fields
+            if(userData.indexOf(0) > 0 || $('#userName').val().length<1){
+                  return;
+            }
+            else{
+
+                   $.post("/api/friends", {
+                        'name': $('#userName').val().trim(),
+                        'age': $("#userAge").val().trim(),
+                        'gender': $("#userGender").val().trim(),
+                        'image': $("#userImage").val().trim(),
+                        'data': userData,
+                  }, function (data) {
+                        if (!data)
+                        {
+                              alert("something went wrong")
+                        }
+                        
+                        $("#userName").val("");
+                        $("#userAge").val("")
+                        $("#userGender").val("");
+                        $("#userImage").val("");
+                       
+                  });
+                  
+            }
+
+           
             
-            // Here we grab the form elements
-             $.post("/api/friends", {
-                  'name': $('#userName').val().trim(),
-                  'age': $("#userAge").val().trim(),
-                  'gender': $("#userGender").val().trim(),
-                  'image': $("#userImage").val().trim(),
-                  'data': Array(10),
-             },function(data) {
-               if (!data) {  
-                 alert("something went wrong")               
-               }
-               else{
-               }
-            
-               $("#userName").val("");
-               $("#userAge").val("")
-               $("#userGender").val("");
-               $("#userImage").val("");
-            });
-         });
-         </script>
-        
+        });
+   });
+</script>
+
 
 </html>
-   
